@@ -33,6 +33,9 @@ group :production do
 end
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
+gem 'mini_racer'
+  
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -42,7 +45,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'sqlite3'
+  gem 'rspec-rails', '~> 3.7'
+  gem 'capybara', '>= 2.15'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
@@ -57,6 +63,7 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
+  gem 'simplecov', require: false
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
