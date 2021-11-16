@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Portfolio</title>
+    <title>Cs3300</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <p id="notice"><%= notice %></p>
+    <p id="alert"><%= alert %></p>
     <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    
+    <% if @isRegistered == 0 %>
+      <div>No registered user found. To keep project list secure, please register <%= link_to "Sign up", new_registration_path(Student) %>
+      </div>
+    <% elsif student_signed_in? %>
+      <div>
+          <span><%= link_to "Sign Out", destroy_student_session_path, method: :delete %></span>
+          <span><%= link_to "Change Student", edit_registration_path(Student) %></span>  
+      </div>
+    <% else %>
+      <div><%= link_to "Sign in", new_session_path(Student) %></div>
+    <% end %>
   </body>
 </html>

@@ -29,5 +29,6 @@ describe Project, type: :model do
     it 'should return all projects' do
       expect(Project.count).to eq(3)
     end
+    
   end
 end
