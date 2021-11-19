@@ -8,6 +8,8 @@ gem 'rails', '~> 5.2.6'
 #Use Bootstrap to make website
 gem 'bootstrap', '~> 4.6.1'
 
+#jQuery since I am using Rails 5.2+
+gem 'jquery-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
