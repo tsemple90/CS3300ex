@@ -6,21 +6,21 @@ RSpec.feature "Projects", type: :feature do
       student = Student.create(:name => 'rspectest', :email => 'test@example.com', :password => 'testpassword')
       login_as(student)
       visit new_project_path
-      within("form") do
+      within("#primary") do
         fill_in "Title", with: "Test title"
       end
     end
 
     scenario "should be successful" do
       fill_in "Description", with: "Test description"
-      click_button "Create Project"
+      click_button "Submit"
       expect(page).to have_content("Project was successfully created")
     end
 
     scenario "should fail" do
       student = Student.create(:name => 'rspectest', :email => 'test@example.com', :password => 'testpassword')
       login_as(student)
-      click_button "Create Project"
+      click_button "Submit"
       expect(page).to have_content("Description can't be blank")
     end
   end
@@ -34,18 +34,18 @@ RSpec.feature "Projects", type: :feature do
     end
 
     scenario "should be successful" do
-      within("form") do
+      within("#primary") do
         fill_in "Description", with: "New description content"
       end
-      click_button "Update Project"
+      click_button "Submit"
       expect(page).to have_content("Project was successfully updated")
     end
 
     scenario "should fail" do
-      within("form") do
+      within("#primary") do
         fill_in "Description", with: ""
       end
-      click_button "Update Project"
+      click_button "Submit"
       expect(page).to have_content("Description can't be blank")
     end
   end
@@ -56,7 +56,7 @@ RSpec.feature "Projects", type: :feature do
       student = Student.create(:name => 'rspectest', :email => 'test@example.com', :password => 'testpassword')
       login_as(student)
       visit projects_path
-      click_link "Destroy"
+      click_button "Destroy"
       expect(page).to have_content("Project was successfully destroyed")
       expect(Project.count).to eq(0)
     end

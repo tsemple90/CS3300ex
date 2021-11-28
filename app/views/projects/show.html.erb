@@ -1,15 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
-<% if student_signed_in? %>
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<% end %>
-<%= link_to 'Back', projects_path %>
+<div class ="container justify-content-center" >
+<div class="col">
+<div class="card h-100">
+  <div class="card-body">
+    <h2 class="card-title"><%= @project.title %></h2>
+    <p class="card-text "><%= @project.description.html_safe %></p>
+  </div>
+<div class="card-footer text-center"> <%= button_to "Back", root_path, :method => :get, form: {style:"display: inline-block;"}, :class => "btn btn-primary btn-sm btn-block" %> <% if student_signed_in? %><%= button_to 'Edit', edit_project_path(@project), :method => :get, :class => "btn btn-secondary btn-sm mr-2 btn-block", form: {style: 'display:inline-block;'} %>
+<%= button_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-sm btn-block", form: {style: 'display:inline-block;'} %><% end %></div>
+</div>
+</div>
+</div>

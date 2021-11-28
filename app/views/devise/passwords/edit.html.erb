@@ -1,25 +1,44 @@
-<h2>Change your password</h2>
+<style>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+</style>
+<%= render "devise/shared/error_messages", resource: resource %>
+
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card border-0 shadow rounded-3 my-5">
+          <div class="card-body p-4 p-sm-5">
+            <h5 class="card-title text-center mb-5 fw-light fs-5">Change your password</h5>
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+              <%= f.hidden_field :reset_password_token %>
+              <div class="container">
+                <div class="row mb-3">
+                  <div class="col"> <%= f.label :password, "New password" %></div>
+                  <div class="col"> <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %> 
+                    <% if @minimum_password_length %> <em><%= @minimum_password_length %> characters minimum</em>
+                    <% end %></div>
+                  </div>
+                <div class="row mb-3">
+                  <div class="col"><%= f.label :password_confirmation, "Confirm new password" %></div>
+                  <div class="col"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>
+                </div>
+              </div>
+
+              <hr class="my-2">
+              <div class="actions d-grid text-center">
+                <button class="btn btn-primary btn-login w-50 fw-bold" type="submit">Change</button>
+                <% end %>
+                <%= button_to "Cancel", :back, :method => :get, :class => "btn btn-danger btn-login", form: {style: 'display:inline-block;'} %><br />
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

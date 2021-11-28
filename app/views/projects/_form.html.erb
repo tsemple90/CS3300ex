@@ -1,6 +1,14 @@
-<%= form_with(model: project, local: true) do |form| %>
+<style>
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
+
+</style>
   <% if project.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="mx-auto">
       <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
 
       <ul>
@@ -11,17 +19,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card border-0 shadow rounded-3 my-5">
+          <div class="card-body p-4 p-sm-5">
+            <h5 class="card-title text-center mb-5 fw-light fs-5"><%= plabel %> Project</h5>
+            <%= form_with(model: project, id:"primary", local: true) do |form| %>
+              <div class="container">
+                <div class="row mb-3">
+                  <div class="col"><%= form.label :title %></div>
+                  <div class="col"><%= form.text_field :title %></div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col"><%= form.label :description %></div>
+                  <div class="col"><%= form.text_area :description %></div>
+                </div>
+              
+              <hr class="my-2">
+              <div class="actions d-grid text-center">
+                <button class="btn btn-primary btn-login w-50 fw-bold" type="submit">Submit</button>
+                <% end %>
+                <%= button_to "Cancel", :back, :method => :get, :class => "btn btn-danger btn-login", form: {style: 'display:inline-block;'} %><br />
+              </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
