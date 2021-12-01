@@ -1,1 +1,1 @@
-<%= render 'form', project: @project, :plabel => "New" %>
+json.array! @projects, partial: "projects/project", as: :project
