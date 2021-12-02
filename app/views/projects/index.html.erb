@@ -1,19 +1,62 @@
-<div class="container-fluid">
-<div>
-<% @projects.each_with_index do |project, index| %>
-  <% if (index % 3) == 0 %>
+<p id="notice"><%= notice %></p>
+<body class="bg-dark" style="background-color: #121212!important;">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #a628d4!important;">
+  <a class="navbar-brand text-white" href="#">Eddy&apos;s Portfolio</a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-link text-white">
+        <% if user_signed_in? %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+        <% else %>
+          <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link text-white'  %> |
+          <%= link_to "Login", new_user_session_path, :class => 'navbar-link text-white'  %>
+        <% end %>
+      </li>
+    </ul>
   </div>
-  <div class="row mb-4 justify-content-center">
-  <% end %>
-    <div class="col" style="width: 20%; max-width: 20em;">
-      <div class="card h-100">
-        <div class="card-body">
-          <h2 class="card-title text-truncate"><%= project.title %></h2>
-          <p class="card-text text-truncate"><%= project.description.html_safe %></p>
-        </div>
-      <div class="card-footer text-center"><%= button_to 'Show', project, :method => :get, :class => "btn btn-primary btn-sm mr-2 btn-block", form: {style: 'display:inline-block;'} %>  <% if student_signed_in? %><%= button_to 'Edit', edit_project_path(project), :method => :get, :class => "btn btn-secondary btn-sm mr-2 btn-block", form: {style: 'display:inline-block;'} %>
-      <%= button_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-sm btn-block", form: {style: 'display:inline-block;'} %><% end %></div>
-    </div>
-    </div>
-<% end %>
+</nav>
+
+<div class="jumbotron text-red" style="background-color: #009c68!important;">
+  <h1 class="display-4">This is my portfolio.</h1>
+  <p class="lead">
+  I am a junior at the University of Colorado Colorado Springs majoring in Computer Science.
+  </p>
+  <p class="lead">
+  I currently am working as a Software Engineer at Jaxon Engineering and Maintenance, a government contractor.
+  </p>
+  <p class="lead">
+  This a place for me to showcase my projects that I have worked on.
+  </p>
 </div>
+
+<h2 class="d-flex justify-content-center text-white">Projects</h1>
+
+<% @projects.each do |project| %>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 px-5">
+    <div class="col">
+      <div class="card shadow-sm py-3">
+        <h3 class="d-flex justify-content-center"><%= project.title %></h3>
+        <div class="col px-2">
+          <p class="d-flex justify-content-center"><%= project.description %></p>
+          <p><%= link_to 'Show', project %></p>
+      
+          <% if user_signed_in? %>
+            <p><%= link_to 'Edit', edit_project_path(project) %></p>
+            <p><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<br>
+<% if user_signed_in? %>
+  <%= link_to 'New Project', new_project_path %>
+<% end %>
+
+</body>
