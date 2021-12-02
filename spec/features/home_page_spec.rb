@@ -1,14 +1,8 @@
-require "rails_helper"
-def login
-  user = FactoryBot.create(:user)
-  login_as(user)
-end
+require 'rails_helper'
 
-RSpec.feature "Visiting the homepage", type: :feature do
-  
-  scenario "The visitor should see projects" do
-    login
+RSpec.feature 'Visiting the homepage', type: :feature do
+  scenario 'The visitor should see projects' do
     visit root_path
-    expect(page).to have_text("Projects")
+    expect(page).to have_text('Portfolio')
   end
 end
