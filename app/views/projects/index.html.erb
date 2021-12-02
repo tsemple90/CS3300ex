@@ -1,62 +1,57 @@
-<p id="notice"><%= notice %></p>
-<body class="bg-dark" style="background-color: #121212!important;">
-<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #a628d4!important;">
-  <a class="navbar-brand text-white" href="#">Eddy&apos;s Portfolio</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Portfolio</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link text-white" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-link text-white">
+      <li class="nav-item">
         <% if user_signed_in? %>
-          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-        <% else %>
-          <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link text-white'  %> |
-          <%= link_to "Login", new_user_session_path, :class => 'navbar-link text-white'  %>
+          <a class="nav-link" style="color: white" rel="nofollow" data-method="delete" href="/users/sign_out">Logout</a>
         <% end %>
+        <% if !user_signed_in? %>
+          <a class="nav-link" style="color: white" href="/users/sign_in">Sign in</a>
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" style="color: green"><%= notice %></a>
       </li>
     </ul>
   </div>
 </nav>
 
-<div class="jumbotron text-red" style="background-color: #009c68!important;">
-  <h1 class="display-4">This is my portfolio.</h1>
-  <p class="lead">
-  I am a junior at the University of Colorado Colorado Springs majoring in Computer Science.
-  </p>
-  <p class="lead">
-  I currently am working as a Software Engineer at Jaxon Engineering and Maintenance, a government contractor.
-  </p>
-  <p class="lead">
-  This a place for me to showcase my projects that I have worked on.
-  </p>
-</div>
+<div style="background-image: url('/images/deadpool.jpeg')">
+<div class="contentarea">
+  <button type="button" class="btn btn-primary expanding" style="margin-top: 1rem;">
+    <a style="color: white" href="/projects/new">New Project</a>
+  </button>
+  <div class="row">
+    <div class="leftcolumn">
 
-<h2 class="d-flex justify-content-center text-white">Projects</h1>
-
-<% @projects.each do |project| %>
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 px-5">
-    <div class="col">
-      <div class="card shadow-sm py-3">
-        <h3 class="d-flex justify-content-center"><%= project.title %></h3>
-        <div class="col px-2">
-          <p class="d-flex justify-content-center"><%= project.description %></p>
-          <p><%= link_to 'Show', project %></p>
-      
-          <% if user_signed_in? %>
-            <p><%= link_to 'Edit', edit_project_path(project) %></p>
-            <p><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-          <% end %>
+    <% @projects.each do |project| %>
+      <div class="card" style="height: 275px; overflow: hidden;">
+        <div class="card-body">
+          <h2 class="card-title"><%= project.title %></h2>
+          <p class="card-text" style="height: 100px; overflow: scroll"><%= project.description %></p>
+          <div style="display: flex; justify-content: space-evenly;">
+            <button type="button" class="btn btn-outline-primary"><%= link_to 'Show', project %></button>
+            <button type="button" class="btn btn-outline-primary"><%= link_to 'Edit', edit_project_path(project) %></button>
+            <button type="button" class="btn btn-outline-primary"><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+          </div>
         </div>
+      </div>
+    <% end %>
+    </div>
+    <div class="rightcolumn">
+      <div class="card">
+        <h2>About Me</h2>
+        <img class="fakeimg" src="/images/lewis_robinsons.png" alt="Tyler Semple profile picture" />
+        <p style="margin-top: 1rem;"> Hello my name is Tyler Semple. I am studying a Bacholer of Inovation with a Computer Science degree at University of Colorado at Colorado Springs. This profile pic is almost an exact replica of me, 2 years ago. </p>
       </div>
     </div>
   </div>
-<% end %>
-
-
-<br>
-<% if user_signed_in? %>
-  <%= link_to 'New Project', new_project_path %>
-<% end %>
-
-</body>
+</div>
+</div>

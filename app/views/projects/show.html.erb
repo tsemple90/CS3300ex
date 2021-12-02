@@ -1,15 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div style="padding: 10rem; text-align: center; background-color: red; height: 100%">
+  <div style="display: flex; justify-content: space-evenly;">
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
+    <p
+      <strong>Title:</strong>
+      <%= @project.title %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
-<% if user_signed_in? %>
-  <%= link_to 'Edit', edit_project_path(@project) %> |
-<% end %>
-<%= link_to 'Back', projects_path %>
+    <p 
+      <id="notice"><%= notice %>
+      <%= @project.description %>
+    </p>
+
+    
+    <p 
+      <%= link_to 'Edit', edit_project_path(@project) %> |
+      <%= link_to 'Back', projects_path %>
+    </p>
+
+  </div>
+</div>
