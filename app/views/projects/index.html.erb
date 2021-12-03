@@ -1,25 +1,63 @@
 <p id="notice"><%= notice %></p>
+<body style="background-color: #2D2424!important;">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #2D2424!important;">
+  <a class="navbar-brand" href="#" style="color:#E0C097!important;">Tyler&apos;s Portfolio</a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-white" href="#" style="color:#E0C097!important;">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-link" style="color:#E0C097!important;">
+        <% if student_signed_in? %>
+          <%= link_to "Logout", destroy_student_session_path, method: :delete, :class => 'navbar-link', :style => 'color:#E0C097!important;'  %>
+        <% else %>
+          <%= link_to "Sign up", new_student_registration_path, :class => 'navbar-link', :style => 'color:#E0C097!important;'   %> |
+          <%= link_to "Login", new_student_session_path, :class => 'navbar-link', :style => 'color:#E0C097!important;'  %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-<style>
-h1 {text-align: center;}
-</style>
-<h1>Projects</h1>
-
-<div class = "container">
-  <% @projects.each do |project| %>
-    <div class="row">
-      <div class="col-md-4">
-        <h2><%=project.title%></h2>
-        <p><%=project.description%></p>
-        <p>
-          <a class="btn btn-secondary"<%= link_to 'Show', project %></a>
-          <a class="btn btn-secondary"<%= link_to 'Edit', edit_project_path(project) %></a>
-          <a class="btn btn-secondary"<%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </p>
-      </div>
-    </div>
-  <% end %>
+<div class="jumbotron text-black" style="background-color: #E0C097!important;">
+  <h1 class="display-4">This is my portfolio.</h1>
+  <hr class="my-4" style="background-color: #000000!important;">
+  <p class="lead">
+  My name is Tyler Nilsson Semple and I am a senior at the University of Colorado at Colorado Springs majoring in Computer Science with a Bachelor in Innovation.
+  </p>
+  <p class="lead">
+  I currently am working as a TA for Mickey Gonzalez at UCCS for a 1150 Basic Computer sceince course.
+  </p>
+  <p class="lead">
+  This is a place for me to showcase my projects that I have worked on. These are fake projects by the way.
+  </p>
 </div>
 
-<a class="btn btn-secondary"<%= link_to 'New Project', new_project_path %></a>
-<%= button_to "Log Out", destroy_student_session_path, method: :delete  %>
+<h2 class="d-flex justify-content-center" style="color:#E0C097!important;">Projects</h1>
+
+<% @projects.each do |project| %>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 px-5">
+    <div class="col">
+      <div class="card shadow-sm py-3" style="background-color: #E0C097!important;">
+        <h3 class="d-flex justify-content-center"><%= project.title %></h3>
+        <div class="col px-2">
+          <p class="d-flex justify-content-center"><%= project.description %></p>
+          <p><%= link_to 'Show', project, :style => 'color:#2D2424!important;' %></p>
+      
+          <% if student_signed_in? %>
+            <p><%= link_to 'Edit', edit_project_path(project) %></p>
+            <p><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<br>
+<% if student_signed_in? %>
+  <%= link_to 'New Project', new_project_path %>
+<% end %>
+
+</body>
