@@ -1,14 +1,17 @@
 require 'rails_helper'
+include ControllerMacros
 
-def newUser
-  user = FactoryBot.create(:student)
+def login
+  user = FactoryBot.create(:user)
   login_as(user)
 end
 
 RSpec.feature "Projects", type: :feature do
-  context "Create new projects" do
+  
+  context "Create new project" do
+    
     before(:each) do
-      newUser
+      login
       visit new_project_path
       within("form") do
         fill_in "Title", with: "Test title"
@@ -25,12 +28,14 @@ RSpec.feature "Projects", type: :feature do
       click_button "Create Project"
       expect(page).to have_content("Description can't be blank")
     end
+    
   end
 
   context "Update project" do
+    
     let(:project) { Project.create(title: "Test title", description: "Test content") }
     before(:each) do
-      newUser
+      login
       visit edit_project_path(project)
     end
 
@@ -54,7 +59,7 @@ RSpec.feature "Projects", type: :feature do
   context "Remove existing project" do
     let!(:project) { Project.create(title: "Test title", description: "Test content") }
     scenario "remove project" do
-      newUser
+      login
       visit projects_path
       click_link "Destroy"
       expect(page).to have_content("Project was successfully destroyed")
@@ -62,9 +67,3 @@ RSpec.feature "Projects", type: :feature do
     end
   end
 end
-
-=begin Default feature for projects
-RSpec.feature "Projects", type: :feature do
-  pending "add some scenarios (or delete) #{__FILE__}"
-end
-=end

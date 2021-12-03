@@ -1,11 +1,7 @@
 class ProjectsController < ApplicationController
-  before_action :authenticate_student!
   before_action :set_project, only: %i[ show edit update destroy ]
-
-  helper_method :user_signed_in?
-  helper_method :current_user
-  helper_method :user_session
-
+  #before_action :authenticate_user!
+  
   # GET /projects or /projects.json
   def index
     @projects = Project.all

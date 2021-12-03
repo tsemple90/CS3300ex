@@ -1,6 +1,15 @@
+<body style="background-color: #2D2424!important;">
+<div class="d-flex justify-content-center py-5" style="background-color: #2D2424!important;">
+<div class="card p-4" style="background-color: #E0C097!important;">
 <h1>Editing Project</h1>
 
 <%= render 'form', project: @project %>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+<div class="d-flex justify-content-center">
+<%= link_to 'Show', @project, :style => "color: #2D2424" %>
+<p class="p-1"> | </p>
+<%= link_to 'Back', projects_path, :style => "color: #2D2424"%>
+</div>
+</div>
+</div>
+</body>

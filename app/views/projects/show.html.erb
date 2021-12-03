@@ -1,14 +1,23 @@
+<body style="background-color: #2D2424!important;">
+<div class="d-flex justify-content-center p-5" style="background-color: #2D2424!important;">
+<div class="card p-4" style="background-color: #E0C097!important;">
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
+<h1>
   <%= @project.title %>
-</p>
+</h1>
+<hr>
 
-<p>
-  <strong>Description:</strong>
+<p class="text-center lead px-5" style="line-height: 1.75">
   <%= @project.description %>
 </p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<div class="d-flex justify-content-center">
+<% if student_signed_in? %>
+  <%= link_to 'Edit', edit_project_path(@project), :style => "color: #2D2424"  %>
+  <p class="p-1">  |  </p>
+<% end %>
+<%= link_to 'Back', projects_path, :style => "color: #2D2424"  %>
+</div>
+</div>
+</div>
+</body>
