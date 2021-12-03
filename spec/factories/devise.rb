@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :student do
+  factory :user do
       id {|n|}
       email { Faker::Internet.email }
       password{"qwerty"}

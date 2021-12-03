@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 def newUser
-  person = FactoryBot.create(:student)
+  person = FactoryBot.create(:user)
   login_as(person)
 end
 
