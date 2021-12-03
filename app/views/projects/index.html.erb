@@ -8,11 +8,11 @@
         <a class="nav-link text-white" href="#" style="color:#E0C097!important;">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-link" style="color:#E0C097!important;">
-        <% if student_signed_in? %>
-          <%= link_to "Logout", destroy_student_session_path, method: :delete, :class => 'navbar-link', :style => 'color:#E0C097!important;'  %>
+        <% if user_signed_in? %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link', :style => 'color:#E0C097!important;'  %>
         <% else %>
-          <%= link_to "Sign up", new_student_registration_path, :class => 'navbar-link', :style => 'color:#E0C097!important;'   %> |
-          <%= link_to "Login", new_student_session_path, :class => 'navbar-link', :style => 'color:#E0C097!important;'  %>
+          <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link', :style => 'color:#E0C097!important;'   %> |
+          <%= link_to "Login", new_user_session_path, :class => 'navbar-link', :style => 'color:#E0C097!important;'  %>
         <% end %>
       </li>
     </ul>
@@ -50,7 +50,7 @@
           <hr>
           <div class="d-flex justify-content-center">
           <p><%= link_to 'Show', project, :style => 'color:#2D2424!important;'%></p>
-          <% if student_signed_in? %>
+          <% if user_signed_in? %>
             <p class="mx-1">  |  </p>
             <p><%= link_to 'Edit', edit_project_path(project), :style => "color: #2D2424" %></p>
             <p class="mx-1">  |  </p>
@@ -72,7 +72,7 @@
 
 <br>
 <div class="px-5 pb-5">
-<% if student_signed_in? %>
+<% if user_signed_in? %>
   <%= link_to 'New Project', new_project_path, :class => 'btn btn-primary', :style => 'color: #FFFFFF!important;'%>
 <% end %>
 </div>
