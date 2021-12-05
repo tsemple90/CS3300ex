@@ -1,20 +1,14 @@
-require 'rails_helper'
-
-def newUser
-  person = FactoryBot.create(:user)
-  login_as(person)
+require "rails_helper"
+def login
+  user = FactoryBot.create(:user)
+  login_as(user)
 end
 
 RSpec.feature "Visiting the homepage", type: :feature do
-    scenario "The visitor should see projects" do
-      newUser
+  
+  scenario "The visitor should see projects" do
+    login
     visit root_path
     expect(page).to have_text("Projects")
   end
 end
-
-=begin Default feature for home page
-RSpec.feature "HomePages", type: :feature do
-  pending "add some scenarios (or delete) #{__FILE__}"
-end
-=end

@@ -67,7 +67,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    childprocess (4.1.0)
+    childprocess (3.0.0)
     chromedriver-helper (2.1.1)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
@@ -180,7 +180,6 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
-    rexml (3.2.5)
     rspec-core (3.9.3)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.4)
@@ -219,9 +218,8 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.0.0)
-      childprocess (>= 0.5, < 5.0)
-      rexml (~> 3.2, >= 3.2.5)
+    selenium-webdriver (3.142.7)
+      childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     simplecov (0.21.2)
       docile (~> 1.1)
